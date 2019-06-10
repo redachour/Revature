@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Movies</h1>
+
+         <form action = "add.html" >
+            <input type = "submit" value = 'Add'/>
+         </form>
+    
+    <table border=1>
+<thead>
+    <tr>
+        <td>Title</td>
+        <td>Year</td>
+        <td>Update/Delete</td>
+    </tr>
+</thead>
+<tbody id="tbody"></tbody>
+
+    </table>
+
+    <script>
+
+
+        var movies = JSON.parse(localStorage.getItem('movies'));
+        var tbody = document.querySelector('#tbody');
+        for (var x in movies){
+            var row = document.createElement('tr');
+            var attr = document.createElement('td');
+            var attr2 = document.createElement('td');
+            var actions = document.createElement('td');
+            if (movies[x] != null){
+                var titles = Object.keys(movies);
+                var years = Object.values(movies);    
+                attr.textContent = movies[x]['title'];
+                attr2.textContent = movies[x]['year'];
+                actions.innerHTML = '<button onclick="del(' + x + ')">Delete</button><button onclick="del(' + x + ')"><a href="edit.html">Update</a></button>';
+                row.appendChild(attr);
+                row.appendChild(attr2);
+                row.appendChild(actions);
+                tbody.appendChild(row);
+            }
+        }    
+
+        function del(item){
+            delete movies[item];
+            localStorage.setItem('movies', JSON.stringify(movies));
+            location.reload();
+        }
+
+
+    </script>
+</body>
+</html>

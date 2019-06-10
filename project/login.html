@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <form onsubmit="return auth()" action="movies.html">
+                <h2>Login</h2>   
+                  <input type="text" name="username" id="name" placeholder="Username" required>
+                  <input type="password" name="password" id="password" placeholder="Password" required>
+                  <input type="submit" value="Login">
+                </div>    
+            </form>
+
+            <script>
+
+                localStorage.setItem('reda', 'achour');
+                function auth(){
+                    name = document.getElementById('name').value;
+                    password = document.getElementById('password').value;
+                    vname = localStorage.getItem(name);
+                    if(vname != password){alert('wrooog');}
+                    return vname == password;
+                }
+
+            </script>
+</body>
+</html>
